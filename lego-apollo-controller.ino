@@ -729,18 +729,12 @@ void LM_Startup()
 
 void LM_Countdown_Start()
 {
-    //Turn Fuel light to white
-    digitalWrite(Fuel_Red, HIGH);
-    digitalWrite(Fuel_Green, HIGH);
-    digitalWrite(Fuel_Blue, HIGH);
-    
     //Code to start countdown timer and start displaying it
     Clock_Type = 0; //0 is for a timer (count down), 1 is for a stopwatch (count up)
     Minute_1 = 0;
     Minute_2 = 4;
     Second_1 = 0;
     Second_2 = 0;
-    timer_CD.start();
     //matrix.writeDigitRaw(0,0x40); //Draw just the middle line, a minus sign.
     alpha4.writeDigitAscii(0, '-');
     //matrix.writeDigitNum(1, Minute_2);
@@ -750,6 +744,14 @@ void LM_Countdown_Start()
     alpha4.writeDigitAscii(2, Second_1 + '0');
     //matrix.writeDigitNum(4, Second_2);
     alpha4.writeDigitAscii(3, Second_2 + '0');
+    alpha4.writeDisplay();
+    
+    //Turn Fuel light to white
+    digitalWrite(Fuel_Red, HIGH);
+    digitalWrite(Fuel_Green, HIGH);
+    digitalWrite(Fuel_Blue, HIGH);
+    
+    timer_CD.start();
 }
 
 void Clock_Display()
