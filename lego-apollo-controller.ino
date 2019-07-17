@@ -240,21 +240,18 @@ Time.zone(-5);
 
 void loop() {
 //Have the Saturn V launch every year on the Apollo 11 launch anniversary day and time
-if (Time.month() == 7 and Time.day() == 16 and Time.hour() == 7 and Time.minute() == 31 and Time.second() == 26) {
+if (Time.month() == 7 and Time.day() == 16 and Time.hour() == 8 and Time.minute() == 31 and Time.second() == 28) {
 Particle.publish("Launch", "Audio", 60, PRIVATE);
-delay(1500);
 }
 
 //Have the Saturn V TLI end every year on the Apollo 11 TLI anniversary day and time
-if (Time.month() == 7 and Time.day() == 16 and Time.hour() == 10 and Time.minute() == 21 and Time.second() == 43) {
+if (Time.month() == 7 and Time.day() == 16 and Time.hour() == 11 and Time.minute() == 21 and Time.second() == 46) {
 Particle.publish("Launch", "NoGo", 60, PRIVATE);
-delay(1500);
 }
 
 //Have the LM land every year on the Apollo 11 landing anniversary day and time
-if (Time.month() == 7 and Time.day() == 20 and Time.hour() == 14 and Time.minute() == 13 and Time.second() == 16) {
+if (Time.month() == 7 and Time.day() == 20 and Time.hour() == 15 and Time.minute() == 13 and Time.second() == 24) {
 Particle.publish("Landing", "Audio", 60, PRIVATE);
-delay(1500);
 }
 
 //Variables for keeping track of the current 'time' for the neopixel flicker delay
