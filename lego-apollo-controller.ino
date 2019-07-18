@@ -49,6 +49,12 @@ bool Launch_Flag = false;           //Flag to ramp up the SV lights from off to 
 bool Engine_Sequence_Flag = false;  //Flag to ramp up the SV lights from off to low
 bool Engine_Launch_Flag = false;    //Flag to ramp up the SV lights from low to full-on
 bool Audio_Launch_Flag = false;     //Flag to start the SV launch audio sequence
+int Month;
+int Day;
+int Hour;
+int Minute;
+int Second;
+int Last_Second;
 
 //Values and flag variables for the Lunar Module
 int LM_Brightness = 0;              //Value to set the brightness level of the LM lights
@@ -239,18 +245,26 @@ Time.zone(-5);
 }
 
 void loop() {
+
+Month = Time.month();
+Day = Time.day();
+Hour = Time.hour();
+Minute = Time.minute();
+Last_Second = Second;
+Second = Time.second();
+
 //Have the Saturn V launch every year on the Apollo 11 launch anniversary day and time
-if (Time.month() == 7 and Time.day() == 16 and Time.hour() == 8 and Time.minute() == 31 and Time.second() == 28) {
+if (Month == 7 and Day == 16 and Hour == 8 and  Minute == 31 and Second == 28 and Second-Last_Second != 0) {
 Particle.publish("Launch", "Audio", 60, PRIVATE);
 }
 
 //Have the Saturn V TLI end every year on the Apollo 11 TLI anniversary day and time
-if (Time.month() == 7 and Time.day() == 16 and Time.hour() == 11 and Time.minute() == 21 and Time.second() == 46) {
+if (Month == 7 and Day == 16 and Hour == 11 and Minute == 21 and Second == 46 and Second-Last_Second != 0) {
 Particle.publish("Launch", "NoGo", 60, PRIVATE);
 }
 
 //Have the LM land every year on the Apollo 11 landing anniversary day and time
-if (Time.month() == 7 and Time.day() == 20 and Time.hour() == 15 and Time.minute() == 13 and Time.second() == 24) {
+if (Month == 7 and Day == 20 and Hour == 15 and Minute == 13 and Second == 24 and Second-Last_Second != 0) {
 Particle.publish("Landing", "Audio", 60, PRIVATE);
 }
 
